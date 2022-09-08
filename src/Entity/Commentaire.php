@@ -48,7 +48,7 @@ class Commentaire
         return $this;
     }
 
-    public function getDatecreation(): ?string
+    public function getDatecreation(): \DateTimeInterface
     {
         return $this->datecreation;
     }

@@ -67,7 +67,7 @@ class AppFixtures extends Fixture
         $commentaire->setDatecreation(new \DateTime('2022-5-12'));
         $commentaire->setUtilisateur($matthieu);
         $commentaire->setPublication($publication3);
-
+        $manager->persist($commentaire);
 
         $manager->flush();
     }

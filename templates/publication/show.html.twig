@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <h1>{{publication.contenu}}</h1>
+    <p>ecrit par {{publication.utilisateur.name}} le {{publication.getDatecreation() | date('d-m-Y')}}</p>
+    <h5>Commentaire : </h5>
+    {% for commentaire in commentaires %}
+        {% if commentaire.publication.id == publication.id %}
+            <p>{{ commentaire.contenu }}</p>
+            <p>de {{ commentaire.utilisateur.name}} le {{commentaire.getDatecreation() | date('d-m-Y')}}</p>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
