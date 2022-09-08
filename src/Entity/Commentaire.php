@@ -6,6 +6,7 @@ use App\Repository\CommentaireRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+
 #[ORM\Entity(repositoryClass: CommentaireRepository::class)]
 class Commentaire
 {
@@ -23,8 +24,14 @@ class Commentaire
     #[ORM\Column(length: 255)]
     private ?string $createur = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $publication = null;
+
+    #[ORM\ManyToOne(inversedBy: 'commentaires')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Utilisateur $utilisateur = null;
+
+    #[ORM\ManyToOne(inversedBy: 'commentaires')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?publication $publication = null;
 
     public function getId(): ?int
     {
@@ -67,12 +74,26 @@ class Commentaire
         return $this;
     }
 
-    public function getPublication(): ?string
+    
+
+    public function getUtilisateur(): ?Utilisateur
+    {
+        return $this->utilisateur;
+    }
+
+    public function setUtilisateur(?Utilisateur $utilisateur): self
+    {
+        $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    public function getPublication(): ?publication
     {
         return $this->publication;
     }
 
-    public function setPublication(string $publication): self
+    public function setPublication(?publication $publication): self
     {
         $this->publication = $publication;
 
