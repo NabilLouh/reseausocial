@@ -21,9 +21,7 @@ class Commentaire
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $datecreation = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $createur = null;
-
+  
 
     #[ORM\ManyToOne(inversedBy: 'commentaires')]
     #[ORM\JoinColumn(nullable: false)]
@@ -55,21 +53,9 @@ class Commentaire
         return $this->datecreation;
     }
 
-    public function setDatecreation(string $datecreation): self
+    public function setDatecreation(\DateTimeInterface $datecreation): self
     {
         $this->datecreation = $datecreation;
-
-        return $this;
-    }
-
-    public function getCreateur(): ?string
-    {
-        return $this->createur;
-    }
-
-    public function setCreateur(string $createur): self
-    {
-        $this->createur = $createur;
 
         return $this;
     }

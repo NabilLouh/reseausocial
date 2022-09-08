@@ -22,8 +22,7 @@ class Publication
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $datecreation = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $createur = null;
+  
 
     #[ORM\ManyToOne(inversedBy: 'publications')]
     #[ORM\JoinColumn(nullable: false)]
@@ -66,17 +65,7 @@ class Publication
         return $this;
     }
 
-    public function getCreateur(): ?string
-    {
-        return $this->createur;
-    }
-
-    public function setCreateur(string $createur): self
-    {
-        $this->createur = $createur;
-
-        return $this;
-    }
+  
 
     public function getUtilisateur(): ?Utilisateur
     {
