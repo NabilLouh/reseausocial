@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    {% if utilisateur.pseudo != NULL %}
+        <h1>{{utilisateur.pseudo}}</h1>
+    {% else %}
+        <h1>{{utilisateur.name}}</h1>
+    {% endif %}
+    
+    <p>{{utilisateur.name}} est née le {{utilisateur.getBirthday() | date('d-m-Y')}}</p>
+    <p>{{ utilisateur.biography}}</p>
+    {% for commentaire in commentaires %}
+        {% if commentaire.utilisateur.id == utilisateur.id %}
+            <p>{{ commentaire.publication.contenu}}</p>
+            <p>par {{commentaire.publication.name}}</p>
+            <p>{{ commentaire.contenu }}</p>
+            <p>le {{commentaire.getDatecreation() | date('d-m-Y')}}</p>
+        {% endif %}
+    {% endfor %}
+
+    {% for publication in publications %}
+        {% if publication.utilisateur.id == utilisateur.id %}
+            <p>{{ publication.contenu}}</p>
+            <p>par {{publication.utilisateur.name}}</p>
+            <p>commentaire : </p>
+            {% for commentaire in commentaires %}
+                {% if commentaire.publication.id == publication.id %}
+                    <p>{{ commentaire.contenu }}</p>
+                    <p>de {{ commentaire.utilisateur.name}} le {{commentaire.getDatecreation() | date('d-m-Y')}}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+    
+
+
+{% endblock %}

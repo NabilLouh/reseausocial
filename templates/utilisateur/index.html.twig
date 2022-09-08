@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h1>La page des utilisateur</h1>
+
+    {% for utilisateur in utilisateurs %}
+        <h1>{{utilisateur.name}}</h1>
+        <p>née le {{utilisateur.getBirthday() | date('d-m-Y')}}</p>
+        {% if utilisateur.pseudo != NULL %}
+            <p>Pseudo: {{utilisateur.pseudo}}</p>
+        {% endif %}
+
+        
+    {% endfor %}
+
+{% endblock %}
